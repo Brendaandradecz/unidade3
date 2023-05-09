@@ -97,8 +97,7 @@ while (op != 0):
                             for produto in vendedores[usuario][5]:
                                 if produto['nome'].find(nome_produto) != -1:
                                     print('CODIGO - NOME - PREÇO - QUANTIDADE')
-                                    print(
-                                        f"{produto['codigo']} - {produto['nome']} - {produto['preco']} - {produto['quantidade']}")
+                                    print(f"{produto['codigo']} - {produto['nome']} - {produto['preco']} - {produto['quantidade']}")
                                     achados = True
 
                             if achados == False:
@@ -131,8 +130,7 @@ while (op != 0):
                             print('\n------------Produtos Cadastrados------------\n')
                             print('CODIGO - NOME - PREÇO - QUANTIDADE')
                             for produto in vendedores[usuario][5]:
-                                print(
-                                    f"{produto['codigo']} - {produto['nome']} - {produto['preco']} - {produto['quantidade']}")
+                                print(f"{produto['codigo']} - {produto['nome']} - {produto['preco']} - {produto['quantidade']}")
 
                             codigo_produto = input('digite o codigo do produto que deseja atualizar: ')
                             produtos_vendedor = vendedores[usuario][5]
