@@ -1,4 +1,4 @@
-codigos = []
+
 vendedores = {}
 
 op = 9999
@@ -84,7 +84,7 @@ while (op != 0):
                             preco = float(input('Digite o preço do produto: '))
                             quantidade = int(input('Digite a quantidade em estoque: '))
                             vendedores[usuario][5].append({'nome': nome, 'codigo': codigo, 'preco': preco, 'quantidade': quantidade})
-                            codigos.append(codigo)
+
                             print('Produto cadastrado com sucesso!')
 
 
@@ -139,7 +139,7 @@ while (op != 0):
                             for i in range(len(produtos_vendedor)):
                                 if produtos_vendedor[i]['codigo'] == codigo_produto:
                                     indice_produto = i
-                                break
+                                    break
 
                             if indice_produto == -1:
                                 print('Produto não encontrado.')
