@@ -123,6 +123,7 @@ while (op != 0):
              op3 = int(input('Digite o numero correspondente à opção desejada: '))
 
              if (op3 == 1):
+                 compras = []
                  cliente = funcao_vend.validar_usuario(clientes)
                  cpf_cli = funcao_vend.validar_cpf()
                  senha_cli = funcao_vend.validar_senha()
@@ -130,6 +131,7 @@ while (op != 0):
                  tel_cli = int(input('Digite seu telefone: '))
                  email_cli = funcao_vend.validar_email()
                  clientes[cliente] = senha_cli, nome_cli, cpf_cli, tel_cli, email_cli
+
                  print('Cadastro Realizado Com Sucesso')
 
              elif(op3 == 2):
@@ -147,17 +149,17 @@ while (op != 0):
 
                                  print(f'Bem-vindo(a), {clientes[cliente][1]}!')
                                  print('1 - Fazer busca/compra')
-                                 print('2 - listar compras ateriores')
+                                 print('2 - listar compras anteriores')
                                  print('3 - Consultar descrição de produto')
                                  print('0 - sair ')
 
                                  opcli = int(input('Digite o numero correspondente à opção desejada: '))
 
                                  if (opcli == 1):
-                                     op4 = funcao_cliente.comprar_indice_produto(vendedores)
+                                     op4 = funcao_cliente.comprar_indice_produto(vendedores, compras)
 
                                  elif (opcli == 2):
-                                     print('0 - sair ')
+                                     funcao_cliente.listar_compras_realizadas(compras)
 
 
                                  elif (opcli == 3):
