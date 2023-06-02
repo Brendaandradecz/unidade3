@@ -189,7 +189,7 @@ while (op != 0):
                  print('Você saiu do MENU cliente')
 
      elif (op != 0):
-         print('Seleçao invalida')
+         print('Esta seleçao é invalida')
 
      else:
          print('Programa Finalizado')
