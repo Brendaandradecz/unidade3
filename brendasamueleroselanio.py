@@ -4,9 +4,9 @@ import funcao_prodt
 import usarchatgpt
 
 vendedores = {'aa': ['aa', 'aa', '11111111111', 111, 'aa', [{'nome': 'bolsa', 'codigo': '1', 'preco': 12.0, 'quantidade': 12, 'descricao': 'adfffff'}, {'nome': 'carro', 'codigo': '2', 'preco': 222222.0, 'quantidade': 1, 'descricao': 'dfd'}]],
-              'ab': ['ab', 'ab', '11111111114', 114, 'ab', [{'nome': 'carro', 'codigo': '4', 'preco': 15.0, 'quantidade': 1, 'descricao': 'adddddd'}, {'nome': 'ded', 'codigo': '5', 'preco': 22.0, 'quantidade': 13, 'descricao': 'fffd'}]]}
+              'ab': ['ab', 'ab', '11111111114', 114, 'ab', [{'nome': 'iphone', 'codigo': '4', 'preco': 15.0, 'quantidade': 1, 'descricao': 'adddddd'}, {'nome': 'ded', 'codigo': '5', 'preco': 22.0, 'quantidade': 13, 'descricao': 'fffd'}]]}
 codigos = ['1', '2', '4', '5']
-clientes = {'aa': ('123456', 'a', '11122233344', 1111, 'aaaaaa')}
+clientes = {'aa': ('1', 'a', '11122233344', 1111, 'aaaaaa')}
 op = 9999
 
 while (op != 0):
