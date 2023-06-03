@@ -17,18 +17,19 @@ def buscar_produtos(vendedores):
     return produtos_encontrados
 
 
-def realizar_compra(produtos_encontrados, compras):
+def realizar_compra(produtos_encontrados, clientes, cliente):
     if produtos_encontrados:
-        quero = input('Voce deseja comprar algum dos produtos encontrados?\n s - Sim\n n - Não\n')
-        while (quero.lower() == 's'):
+        quero = input('Voce deseja comprar algum dos produtos encontrados?\n 1 - Sim\n 2 - Não\n')
+
+        while (quero.lower() == '1'):
+            p_comprado = {}
             codigo_produto = input('Digite o código do produto que deseja comprar: ')
             for p in produtos_encontrados:
                 if codigo_produto == p['codigo']:
                     if p['quantidade'] > 0:
                         print('Produto disponível. Efetuando compra...')
                         p['quantidade'] -= 1
-                        compra = {'produto': p['nome'], 'vendedor': p['vendedor']}
-                        compras.append(compra)
+                        clientes[cliente][5].append({'produto': p})
                         print('Compra realizada com sucesso!')
                         break
                     else:
@@ -36,25 +37,23 @@ def realizar_compra(produtos_encontrados, compras):
             else:
                 print('Produto não encontrado.')
 
-            quero = input('Continuar comprando?\n s - Sim\n n - Não\n')
+            quero = input('Continuar comprando?\n 1 - Sim\n 2 - Não\n')
 
-def comprar_indice_produto(vendedores, compras):
+def comprar_indice_produto(vendedores, clientes, cliente):
     op4 = input('Você deseja buscar e/ou comprar algum produto?\n s - Sim\n n - Não\n')
     while op4.lower() == 's':
         produtos_encontrados = buscar_produtos(vendedores)
         if produtos_encontrados:
-            realizar_compra(produtos_encontrados, compras)
+            realizar_compra(produtos_encontrados, clientes, cliente)
 
-        op4 = input('Você deseja buscar e/ou comprar mais algum produto?\n s - Sim\n n - Não\n')
+        op4 = input('Você deseja buscar e/ou comprar mais algum produto?\n 1 - Sim\n 2 - Não\n')
 
     return op4
 
-def listar_compras_realizadas(compras):
-    if compras:
+def listar_compras_realizadas(clientes, cliente):
+    if clientes[cliente][5]:
         print('\n--------COMPRAS REALIZADAS---------\n')
-        for compra in compras:
-            print(f'Produto: {compra["produto"]} | Vendedor: {compra["vendedor"]} | Data: {compra["data"]}')
+        for compra in clientes[cliente][5]:
+            print(f'Produto: {compra["nome"]} | preço: {compra["preço"]} | quantidade: {compra["quantidade"]}')
     else:
         print('Nenhuma compra realizada.')
-
-

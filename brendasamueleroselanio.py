@@ -6,7 +6,7 @@ import usarchatgpt
 vendedores = {'aa': ['aa', 'aa', '11111111111', 111, 'aa', [{'nome': 'bolsa', 'codigo': '1', 'preco': 12.0, 'quantidade': 12, 'descricao': 'adfffff'}, {'nome': 'carro', 'codigo': '2', 'preco': 222222.0, 'quantidade': 1, 'descricao': 'dfd'}]],
               'ab': ['ab', 'ab', '11111111114', 114, 'ab', [{'nome': 'iphone', 'codigo': '4', 'preco': 15.0, 'quantidade': 1, 'descricao': 'adddddd'}, {'nome': 'ded', 'codigo': '5', 'preco': 22.0, 'quantidade': 13, 'descricao': 'fffd'}]]}
 codigos = ['1', '2', '4', '5']
-clientes = {'aa': ('1', 'a', '11122233344', 1111, 'aaaaaa')}
+clientes = {'aa': ('1', 'a', '11122233344', 1111, 'aaaaaa', [{'produto': {'nome': 'carro', 'codigo': '2', 'preco': 222222.0, 'quantidade': 0, 'descricao': 'dfd'}}])}
 op = 9999
 
 while (op != 0):
@@ -123,14 +123,13 @@ while (op != 0):
              op3 = int(input('Digite o numero correspondente à opção desejada: '))
 
              if (op3 == 1):
-                 compras = []
                  cliente = funcao_vend.validar_usuario(clientes)
                  cpf_cli = funcao_vend.validar_cpf()
                  senha_cli = funcao_vend.validar_senha()
                  nome_cli = input('Digite seu nome completo: ')
                  tel_cli = int(input('Digite seu telefone: '))
                  email_cli = funcao_vend.validar_email()
-                 clientes[cliente] = senha_cli, nome_cli, cpf_cli, tel_cli, email_cli
+                 clientes[cliente] = senha_cli, nome_cli, cpf_cli, tel_cli, email_cli, []
 
                  print('Cadastro Realizado Com Sucesso')
 
@@ -156,11 +155,10 @@ while (op != 0):
                                  opcli = int(input('Digite o numero correspondente à opção desejada: '))
 
                                  if (opcli == 1):
-                                     op4 = funcao_cliente.comprar_indice_produto(vendedores, compras)
+                                     op4 = funcao_cliente.comprar_indice_produto(vendedores, clientes, cliente)
 
                                  elif (opcli == 2):
-                                     funcao_cliente.listar_compras_realizadas(compras)
-
+                                     funcao_cliente.listar_compras_realizadas(clientes, cliente)
 
                                  elif (opcli == 3):
                                      nome_produto = input("Digite o nome do produto que deseja consultar: ")
