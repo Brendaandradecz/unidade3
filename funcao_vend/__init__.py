@@ -1,3 +1,4 @@
+
 def validar_usuario(vendedores):
    usuario_valido = False
    while usuario_valido == False:
@@ -42,3 +43,29 @@ def validar_email():
             print('Email valido')
         else:
             print('Email invalido, tente novamente')
+
+def grafico(vendedores):
+    data = {}
+    for vendedor, dados_vendedor in vendedores.items():
+        produtos = dados_vendedor[-1]
+        for produto in produtos:
+            nome = produto['nome']
+            quantidade = produto['quantidade']
+            if nome in data:
+                data[nome] += quantidade
+            else:
+                data[nome] = quantidade
+
+    # Criando o gráfico de barras
+    courses = list(data.keys())
+    values = list(data.values())
+
+    fig = plt.figure(figsize=(10, 5))
+
+    # Criando o gráfico de barras
+    plt.bar(courses, values, color='maroon', width=0.4)
+
+    plt.xlabel("Produtos")
+    plt.ylabel("Quantidade")
+    plt.title("Sertao Livre")
+    plt.show()
