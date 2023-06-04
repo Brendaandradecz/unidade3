@@ -74,7 +74,7 @@ def gerar_grafico(produtos_quantidades):
     produtos = list(produtos_quantidades.keys())
     quantidades = list(produtos_quantidades.values())
 
-    plt.bar(produtos, quantidades)
+    plt.bar('produtos', 'quantidades')
     plt.xlabel('Quantidade Disponível')
     plt.ylabel('Produto')
     plt.title('Quantidade de Produtos Disponíveis')
