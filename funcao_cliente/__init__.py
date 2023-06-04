@@ -5,7 +5,6 @@ def buscar_produtos(vendedores):
     nome_produto = input('Digite o nome do produto: ')
     for vendedor, produtos_vendedor in vendedores.items():
         for produto in produtos_vendedor[5]:
-            #if (produto['quantidade'] >= 1 ):
                 if produto['quantidade'] >= 1 and (nome_produto.lower() in produto['nome'].lower() or nome_produto.lower() in produto['descricao'].lower()):
                     print(f'Produto encontrado: Vendedor: {vendedor} | Nome: {produto["nome"]} | Código: {produto["codigo"]} | Preço: R${produto["preco"]} | Quantidade: {produto["quantidade"]} | Descrição: {produto["descricao"]}')
                     produtos_encontrados.append(produto)
@@ -16,28 +15,27 @@ def buscar_produtos(vendedores):
 
     return produtos_encontrados
 
-
 def realizar_compra(produtos_encontrados, clientes, cliente):
     if produtos_encontrados:
-        quero = input('Voce deseja comprar algum dos produtos encontrados?\n s - Sim\n n - Não\n')
+        quero = input('Você deseja comprar algum dos produtos encontrados?\n s - Sim\n n - Não\n')
 
-        while (quero.lower() == 's'):
+        while quero.lower() == 's':
             codigo_produto = input('Digite o código do produto que deseja comprar: ')
             for p in produtos_encontrados:
                 if codigo_produto == p['codigo']:
                     if p['quantidade'] > 0:
                         qtd_valida = False
-                        while qtd_valida == False:
-                            qtd = int(input('Digite a quantidade desejada'))
-                            if (qtd > p['quantidade'] or qtd < 0 or qtd == 0):
-                                print('Quantidade inválida, tente novamente')
+                        while not qtd_valida:
+                            qtd = int(input('Digite a quantidade desejada: '))
+                            if qtd > p['quantidade'] or qtd <= 0:
+                                print('Quantidade inválida, tente novamente!')
                             else:
                                 qtd_valida = True
                         print('Produto disponível. Efetuando compra...')
                         p['quantidade'] -= qtd
-                        clientes[cliente]['compras'].append(p)
-                        p['quantidade'] = int(qtd)
-
+                        compra = p.copy()
+                        compra['quantidade'] = qtd
+                        clientes[cliente]['compras'].append(compra)
                         print('Compra realizada com sucesso!')
                         break
                     else:

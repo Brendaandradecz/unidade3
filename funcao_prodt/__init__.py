@@ -28,6 +28,7 @@ def listarProduto(vendedores, usuario):
     print('CODIGO - NOME - PREÇO - QUANTIDADE - DESCRIÇÃO')
     for produto in vendedores[usuario][5]:
         print(f"{produto['codigo']} - {produto['nome']} - {produto['preco']} - {produto['quantidade']} - {produto['descricao']} ")
+
 def buscar_indice_produto(produtos_vendedor, codigo_produto):
     indice_produto = -1
 

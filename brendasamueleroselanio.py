@@ -1,21 +1,18 @@
-import matplotlib.pyplot as plt
 import funcao_cliente
 import funcao_vend
 import funcao_prodt
 import usarchatgpt
-
 
 vendedores = {'aa': ['aa', 'aa', '11111111111', 111, 'aa', [{'nome': 'bolsa', 'codigo': '1', 'preco': 12.0, 'quantidade': 12, 'descricao': 'adfffff'}, {'nome': 'carro', 'codigo': '2', 'preco': 222222.0, 'quantidade': 1, 'descricao': 'dfd'}]],
               'ab': ['ab', 'ab', '11111111114', 114, 'ab', [{'nome': 'iphone', 'codigo': '4', 'preco': 15.0, 'quantidade': 1, 'descricao': 'adddddd'}, {'nome': 'ded', 'codigo': '5', 'preco': 22.0, 'quantidade': 13, 'descricao': 'fffd'}]]}
 
 codigos = ['1', '2', '4', '5']
 
-clientes = {}
-
+clientes = {'aa': {'senha': '123123', 'nome': 'sasa', 'cpf': '11122233344', 'tel': 12231123, 'email': 'brenda@gmail.com', 'compras': [{'nome': 'bolsa', 'codigo': '1', 'preco': 12.0, 'quantidade': 5, 'descricao': 'adfffff'}, {'nome': 'carro', 'codigo': '2', 'preco': 222222.0, 'quantidade': 1, 'descricao': 'dfd'}, {'nome': 'bolsa', 'codigo': '1', 'preco': 12.0, 'quantidade': 2, 'descricao': 'adfffff'}]}}
 op = 9999
 
 while (op != 0):
-     print('\n----------MENU----------\n1 - Fazer  cadastro como vendedor\n2 - Fazer login\n3 - MENU do cliente\n0 - Sair\n')
+     print('\n----------MENU----------\n1 - Fazer  cadastro como vendedor\n2 - Fazer login como vendedor \n3 - MENU do cliente\n0 - Sair\n')
 
      op = int(input('Digite o numero correspondente à opção desejada: '))
 
@@ -24,11 +21,11 @@ while (op != 0):
          usuario = funcao_vend.validar_usuario(vendedores)
          cpf = funcao_vend.validar_cpf()
          senha = funcao_vend.validar_senha()
-         nome = input('Digite seu nome completo: ')
-         tel = int(input('Digite seu telefone: '))
+         nome = funcao_vend.validar_nome()
+         tel = funcao_vend.validar_telefone()
          email = funcao_vend.validar_email()
          vendedores[usuario] = [senha, nome, cpf, tel, email, []]
-         print('\nCadastro Realizado Com Sucesso!\n')
+         print('\nCadastro Realizado com Sucesso!\n')
 
      elif (op == 2):
          sistema = False
@@ -85,12 +82,11 @@ while (op != 0):
                                  produtos_vendedor = vendedores[usuario][5]
                                  funcao_prodt.listarProduto(vendedores, usuario)
 
-                                 codigo_produto = input('digite o codigo do produto que deseja atualizar: ')
+                                 codigo_produto = input('Digite o código do produto que deseja atualizar: ')
                                  indice_produto = funcao_prodt.buscar_indice_produto(produtos_vendedor, codigo_produto)
 
-                                 if (indice_produto == -1):
+                                 if indice_produto == -1:
                                      print('Produto não encontrado.')
-
                                  else:
                                      novo_nome = input('Digite o novo nome do produto ou pressione ENTER para manter o mesmo: ')
                                      novo_preco = input('Digite o novo preço do produto ou pressione ENTER para manter o mesmo: ')
@@ -98,14 +94,14 @@ while (op != 0):
                                      nova_descricao = input('Digite a nova descrição do produto ou pressione ENTER para manter a mesma: ')
                                      funcao_prodt.atualizar_produto(produtos_vendedor, indice_produto, novo_nome, novo_preco, nova_quantidade, nova_descricao)
 
-
                              elif (op2 == 5):
                                  nova_senha = funcao_vend.validar_senha()
                                  vendedores[usuario][0] = nova_senha
                                  print('Senha atualizada com sucesso!')
 
                              elif (op2 == 6):
-                                 funcao_vend.grafico(vendedores)
+                                 produtos_vendedor = [produto['nome'] for produto in vendedores[usuario][5]]
+                                 funcao_vend.gerar_grafico(clientes, produtos_vendedor)
 
                              elif (op2 != 0):
                                  print('Seleçao invalida')
@@ -125,7 +121,7 @@ while (op != 0):
          while (op3 != 0):
              print('\nBem-Vindo(a) ao MENU cliente!\n')
              print('1 - Fazer cadastro como cliente')
-             print('2 - Fazer login')
+             print('2 - Fazer login como cliente')
              print('0 - Sair')
 
              op3 = int(input('Digite o numero correspondente à opção desejada: '))
@@ -134,8 +130,8 @@ while (op != 0):
                  cliente = funcao_vend.validar_usuario(clientes)
                  cpf_cli = funcao_vend.validar_cpf()
                  senha_cli = funcao_vend.validar_senha()
-                 nome_cli = input('Digite seu nome completo: ')
-                 tel_cli = int(input('Digite seu telefone: '))
+                 nome_cli = funcao_vend.validar_nome()
+                 tel_cli = funcao_vend.validar_telefone()
                  email_cli = funcao_vend.validar_email()
                  clientes[cliente] = {'senha': senha_cli, 'nome': nome_cli, 'cpf': cpf_cli, 'tel': tel_cli, 'email': email_cli, 'compras': []}
                  print('Cadastro Realizado Com Sucesso')
@@ -155,7 +151,7 @@ while (op != 0):
 
                                  print(f'Bem-vindo(a), {clientes[cliente]["nome"]}!')
                                  print('1 - Fazer busca/compra')
-                                 print('2 - listar compras anteriores')
+                                 print('2 - Listar compras anteriores')
                                  print('3 - Consultar descrição de produto')
                                  print('0 - sair ')
 
@@ -165,12 +161,10 @@ while (op != 0):
                                      op4 = funcao_cliente.comprar_indice_produto(vendedores, clientes, cliente)
 
                                  elif (opcli == 2):
-                                     #print(clientes)
                                      funcao_cliente.listar_compras_realizadas(clientes, cliente)
 
-
                                  elif (opcli == 3):
-                                     nome_produto = input("Digite o nome do produto que deseja consultar: ")
+                                     nome_produto = input('Digite o nome do produto que deseja consultar: ')
                                      produto_encontrado = False
 
                                      for vendedor, dados_vendedor in vendedores.items():
@@ -184,7 +178,6 @@ while (op != 0):
 
                                      if not produto_encontrado:
                                          print("Produto não encontrado.")
-
                          else:
                              print('Senha Incorreta')
                      else:
@@ -193,11 +186,11 @@ while (op != 0):
              elif(op3 != 0):
                  print('Seleção Invalida')
                  print(clientes)
+                 print(vendedores)
              else:
                  print('Você saiu do MENU cliente')
 
      elif (op != 0):
          print('Esta seleçao é invalida')
-
      else:
          print('Programa Finalizado')

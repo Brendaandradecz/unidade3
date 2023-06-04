@@ -1,4 +1,4 @@
-
+import matplotlib.pyplot as plt
 def validar_usuario(vendedores):
    usuario_valido = False
    while usuario_valido == False:
@@ -23,6 +23,18 @@ def validar_cpf():
            print('CPF inválido, Tente novamente')
    return cpf
 
+def validar_nome():
+    nome_valido = False
+    while not nome_valido:
+        nome = input('Digite seu nome: ')
+        if isinstance(nome, str) and len(nome) >= 3:
+            nome_valido = True
+            print('Nome válido')
+        else:
+            print('Nome inválido, tente novamente')
+
+    return nome
+
 def validar_senha():
     senha_valida = False
     while senha_valida == False:
@@ -32,6 +44,18 @@ def validar_senha():
         else:
             senha_valida = True
     return senha
+
+def validar_telefone():
+    telefone_valido = False
+    while not telefone_valido:
+        telefone = input('Digite seu telefone: ')
+        if telefone.isdigit() and len(telefone) >= 8:
+            telefone_valido = True
+            print('Telefone válido')
+        else:
+            print('Telefone inválido, tente novamente')
+
+    return telefone
 
 def validar_email():
     email_valido = False
@@ -43,29 +67,19 @@ def validar_email():
             print('Email valido')
         else:
             print('Email invalido, tente novamente')
+    return email
 
-def grafico(vendedores):
-    data = {}
-    for vendedor, dados_vendedor in vendedores.items():
-        produtos = dados_vendedor[-1]
-        for produto in produtos:
-            nome = produto['nome']
-            quantidade = produto['quantidade']
-            if nome in data:
-                data[nome] += quantidade
-            else:
-                data[nome] = quantidade
 
-    # Criando o gráfico de barras
-    courses = list(data.keys())
-    values = list(data.values())
+def gerar_grafico(produtos_quantidades):
+    produtos = list(produtos_quantidades.keys())
+    quantidades = list(produtos_quantidades.values())
 
-    fig = plt.figure(figsize=(10, 5))
-
-    # Criando o gráfico de barras
-    plt.bar(courses, values, color='maroon', width=0.4)
-
-    plt.xlabel("Produtos")
-    plt.ylabel("Quantidade")
-    plt.title("Sertao Livre")
+    plt.bar(produtos, quantidades)
+    plt.xlabel('Quantidade Disponível')
+    plt.ylabel('Produto')
+    plt.title('Quantidade de Produtos Disponíveis')
     plt.show()
+
+produtos_quantidades = {'bolsa': 10, 'sapato': 5, 'camisa': 8}
+
+gerar_grafico(produtos_quantidades)
