@@ -2,7 +2,6 @@ import openai
 
 def consultarchatgpt(produto):
    openai.api_key = 'depois coloco a chave'
-
    # Set the model and prompt
    model_engine = "text-davinci-003"
    prompt = 'me diga resumidamente o que você acha do ' + produto + ' ?'

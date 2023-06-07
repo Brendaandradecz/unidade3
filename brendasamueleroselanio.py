@@ -32,89 +32,85 @@ while (op != 0):
          while sistema == False:
              usuario = input('Digite seu usuario: ')
              senha = input('Digite sua senha: ')
+             if usuario in vendedores:
+                 if vendedores[usuario][0] == senha:
+                     sistema = True
+                     print(f'Bem-vindo(a), {vendedores[usuario][1]}!')
+                     op2 = 99999
 
-             for user in vendedores:
-                 if (user == usuario):
-                     senha1 = vendedores[usuario][0]
-                     if (senha1 == senha):
-                         sistema = True
-                         print(f'Bem-vindo(a), {vendedores[usuario][1]}!')
-
-                         op2 = 99999
-
-                         while (op2 != 0):
-                             print('\n--------LOGADO----------\n\n1 - Cadastrar novo produto para venda\n''2 - Buscar produtos cadastrados\n'
+                     while (op2 != 0):
+                         print('\n--------LOGADO----------\n\n1 - Cadastrar novo produto para venda\n''2 - Buscar produtos cadastrados\n'
                                    '3 - Remover produtos cadastrados\n''4 - Atualizar produtos cadastrados\n5 - Atualizar senha\n0- Sair\n')
 
-                             op2 = int(input('Digite o numero correspondente à opção desejada: '))
+                         op2 = int(input('Digite o numero correspondente à opção desejada: '))
 
-                             if (op2 == 1):
-                                 produtos = {}
-                                 codigo = funcao_prodt.validar_codigo()
+                         if (op2 == 1):
+                             produtos = {}
+                             codigo = funcao_prodt.validar_codigo()
 
-                                 nome = input('Digite o nome do produto: ')
-                                 preco = float(input('Digite o preço do produto: '))
-                                 quantidade = int(input('Digite a quantidade em estoque: '))
-                                 descricao = input('Digite a descrição do produto: ')
-                                 vendedores[usuario][5].append({'nome': nome, 'codigo': codigo, 'preco': preco, 'quantidade': quantidade, 'descricao': descricao})
-                                 codigos.append(codigo)
-                                 print('Produto cadastrado com sucesso!')
+                             nome = input('Digite o nome do produto: ')
+                             preco = float(input('Digite o preço do produto: '))
+                             quantidade = int(input('Digite a quantidade em estoque: '))
+                             descricao = input('Digite a descrição do produto: ')
+                             vendedores[usuario][5].append({'nome': nome, 'codigo': codigo, 'preco': preco, 'quantidade': quantidade, 'descricao': descricao})
+                             codigos.append(codigo)
+                             print('Produto cadastrado com sucesso!')
 
-                             elif (op2 == 2):
-                                 print('\n--------BUSCAR PRODUTO CADASTRADO---------\n')
-                                 nome_produto = input('Digite o nome do produto: ')
-                                 funcao_prodt.buscarProduto(nome_produto)
+                         elif (op2 == 2):
+                             print('\n--------BUSCAR PRODUTO CADASTRADO---------\n')
+                             nome_produto = input('Digite o nome do produto: ')
+                             funcao_prodt.buscarProduto(nome_produto)
 
-                             elif (op2 == 3):
-                                 produtos_vendedor = vendedores[usuario][5]
-                                 funcao_prodt.listarProduto(vendedores, usuario)
-                                 codigo_produto = input('digite o codigo do produto que deseja remover: ')
-                                 indice_produto = funcao_prodt.buscar_indice_produto(produtos_vendedor, codigo_produto)
+                         elif (op2 == 3):
+                             produtos_vendedor = vendedores[usuario][5]
+                             funcao_prodt.listarProduto(vendedores, usuario)
+                             codigo_produto = input('digite o codigo do produto que deseja remover: ')
+                             indice_produto = funcao_prodt.buscar_indice_produto(produtos_vendedor, codigo_produto)
 
-                                 if indice_produto == -1:
-                                     print('Produto não encontrado.')
-                                 else:
-                                     vendedores[usuario][5].pop(indice_produto)
-                                     codigos.remove(codigo_produto)
-                                     print('Produto removido com sucesso!')
-
-                             elif (op2 == 4):
-                                 produtos_vendedor = vendedores[usuario][5]
-                                 funcao_prodt.listarProduto(vendedores, usuario)
-
-                                 codigo_produto = input('Digite o código do produto que deseja atualizar: ')
-                                 indice_produto = funcao_prodt.buscar_indice_produto(produtos_vendedor, codigo_produto)
-
-                                 if indice_produto == -1:
-                                     print('Produto não encontrado.')
-                                 else:
-                                     novo_nome = input('Digite o novo nome do produto ou pressione ENTER para manter o mesmo: ')
-                                     novo_preco = input('Digite o novo preço do produto ou pressione ENTER para manter o mesmo: ')
-                                     nova_quantidade = input('Digite a nova quantidade do produto ou pressione ENTER para manter a mesma: ')
-                                     nova_descricao = input('Digite a nova descrição do produto ou pressione ENTER para manter a mesma: ')
-                                     funcao_prodt.atualizar_produto(produtos_vendedor, indice_produto, novo_nome, novo_preco, nova_quantidade, nova_descricao)
-
-                             elif (op2 == 5):
-                                 nova_senha = funcao_vend.validar_senha()
-                                 vendedores[usuario][0] = nova_senha
-                                 print('Senha atualizada com sucesso!')
-
-                             elif (op2 == 6):
-                                 produtos_vendedor = [produto['nome'] for produto in vendedores[usuario][5]]
-                                 funcao_vend.gerar_grafico(clientes, produtos_vendedor)
-
-                             elif (op2 != 0):
-                                 print('Seleçao invalida')
-                                 print(vendedores)
-                                 print(clientes)
-                                 print(codigos)
-
+                             if indice_produto == -1:
+                                 print('Produto não encontrado.')
                              else:
-                                 print('-------DESLOGADO--------')
-                     else:
-                         print('Senha Incorreta')
+                                 vendedores[usuario][5].pop(indice_produto)
+                                 codigos.remove(codigo_produto)
+                                 print('Produto removido com sucesso!')
+
+                         elif (op2 == 4):
+                             produtos_vendedor = vendedores[usuario][5]
+                             funcao_prodt.listarProduto(vendedores, usuario)
+
+                             codigo_produto = input('Digite o código do produto que deseja atualizar: ')
+                             indice_produto = funcao_prodt.buscar_indice_produto(produtos_vendedor, codigo_produto)
+
+                             if indice_produto == -1:
+                                 print('Produto não encontrado.')
+                             else:
+                                 novo_nome = input('Digite o novo nome do produto ou pressione ENTER para manter o mesmo: ')
+                                 novo_preco = input('Digite o novo preço do produto ou pressione ENTER para manter o mesmo: ')
+                                 nova_quantidade = input('Digite a nova quantidade do produto ou pressione ENTER para manter a mesma: ')
+                                 nova_descricao = input('Digite a nova descrição do produto ou pressione ENTER para manter a mesma: ')
+                                 funcao_prodt.atualizar_produto(produtos_vendedor, indice_produto, novo_nome, novo_preco, nova_quantidade, nova_descricao)
+
+                         elif (op2 == 5):
+                             nova_senha = funcao_vend.validar_senha()
+                             vendedores[usuario][0] = nova_senha
+                             print('Senha atualizada com sucesso!')
+
+                             #elif (op2 == 6):
+                                 #produtos_vendedor = [produto['nome'] for produto in vendedores[usuario][5]]
+                                 #funcao_vend.gerar_grafico(clientes, produtos_vendedor)
+
+                         elif (op2 != 0):
+                             print('Seleçao invalida')
+                             print(vendedores)
+                             print(clientes)
+                             print(codigos)
+
+                         else:
+                             print('-------DESLOGADO--------')
                  else:
-                     print('Usuário não encontrado')
+                     print('Senha Incorreta')
+             else:
+                 print('Usuário não encontrado')
 
      elif (op == 3):
          op3 = 999

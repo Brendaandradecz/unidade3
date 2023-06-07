@@ -70,16 +70,4 @@ def validar_email():
     return email
 
 
-def gerar_grafico(produtos_quantidades):
-    produtos = list(produtos_quantidades.keys())
-    quantidades = list(produtos_quantidades.values())
 
-    plt.bar('produtos', 'quantidades')
-    plt.xlabel('Quantidade Disponível')
-    plt.ylabel('Produto')
-    plt.title('Quantidade de Produtos Disponíveis')
-    plt.show()
-
-produtos_quantidades = {'bolsa': 10, 'sapato': 5, 'camisa': 8}
-
-gerar_grafico(produtos_quantidades)
