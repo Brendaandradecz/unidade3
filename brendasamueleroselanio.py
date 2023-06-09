@@ -95,9 +95,8 @@ while (op != 0):
                              vendedores[usuario][0] = nova_senha
                              print('Senha atualizada com sucesso!')
 
-                             #elif (op2 == 6):
-                                 #produtos_vendedor = [produto['nome'] for produto in vendedores[usuario][5]]
-                                 #funcao_vend.gerar_grafico(clientes, produtos_vendedor)
+                         elif (op2 == 6):
+                             funcao_vend.gerar_grafico(vendedores, usuario)
 
                          elif (op2 != 0):
                              print('Seleçao invalida')

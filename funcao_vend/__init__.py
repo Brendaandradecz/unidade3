@@ -69,5 +69,19 @@ def validar_email():
             print('Email invalido, tente novamente')
     return email
 
+def gerar_grafico(vendedores, usuario):
+    nomes = []
+    quantidade = []
+
+    for produto in vendedores[usuario][5]:
+        nomes.append(produto['nome'])
+        quantidade.append(produto['quantidade'])
+
+    fig = plt.figure(figsize=(10, 5))
+    plt.bar(nomes, quantidade, color='maroon', width=0.4)
+    plt.xlabel('Produtos')
+    plt.ylabel('Quantidade')
+    plt.title('Grafico Produtos')
+    plt.show()
 
 
