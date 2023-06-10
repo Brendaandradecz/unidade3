@@ -84,4 +84,3 @@ def gerar_grafico(vendedores, usuario):
     plt.title('Grafico Produtos')
     plt.show()
 
-
