@@ -84,3 +84,17 @@ def gerar_grafico(vendedores, usuario):
     plt.title('Grafico Produtos')
     plt.show()
 
+def salvar_relatorio(vendedores, usuario):
+   nome_arquivo = f"relatorio_{usuario}.txt"
+
+   with open(nome_arquivo, "w") as arquivo:
+       arquivo.write(f"Relatório de produtos do vendedor {vendedores[usuario][1]}:\n\n")
+
+       for produto in vendedores[usuario][5]:
+           arquivo.write(f"Nome: {produto['nome']}\n")
+           arquivo.write(f"Código: {produto['codigo']}\n")
+           arquivo.write(f"Preço: R${produto['preco']:.2f}\n")
+           arquivo.write(f"Quantidade: {produto['quantidade']}\n")
+           arquivo.write(f"Descrição: {produto['descricao']}\n\n")
+
+   print(f"Relatório salvo com sucesso no arquivo {nome_arquivo}")

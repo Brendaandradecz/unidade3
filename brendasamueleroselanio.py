@@ -41,7 +41,7 @@ while (menu != 0):
                              op2 = 99999
 
                              while (op2 != 0):
-                                 print('\n--------LOGADO----------\n\n1 - Cadastrar novo produto para venda\n''2 - Buscar produtos cadastrados\n''3 - Remover produtos cadastrados\n''4 - Atualizar produtos cadastrados\n5 - Atualizar senha\n6 - ... 7 - ...0- Sair\n')
+                                 print('\n--------LOGADO----------\n\n1 - Cadastrar novo produto para venda\n''2 - Buscar produtos cadastrados\n''3 - Remover produtos cadastrados\n''4 - Atualizar produtos cadastrados\n5 - Atualizar senha\n6 - Gerar gráfico de produtos\n7 - Salvar relatório de produtos\n0- Sair\n')
                                  op2 = int(input('Digite o numero correspondente à opção desejada: '))
 
                                  if (op2 == 1):
@@ -97,6 +97,9 @@ while (menu != 0):
 
                                  elif (op2 == 6):
                                      funcao_vend.gerar_grafico(vendedores, usuario)
+
+                                 elif (op2 == 7):
+                                     funcao_vend.salvar_relatorio(vendedores, usuario)
 
                                  elif (op2 != 0):
                                      print('Seleçao invalida')
