@@ -18,7 +18,6 @@ def buscar_produtos(vendedores):
 def realizar_compra(produtos_encontrados, clientes, cliente):
     if produtos_encontrados:
         quero = input('Você deseja comprar algum dos produtos encontrados?\n s - Sim\n n - Não\n')
-
         while quero.lower() == 's':
             codigo_produto = input('Digite o código do produto que deseja comprar: ')
             for p in produtos_encontrados:

@@ -1,4 +1,4 @@
-def validar_codigo():
+def validar_codigo(codigos):
     codigo_valido = False
     while codigo_valido == False:
         codigo = input('Digite o código do produto: ')
@@ -13,7 +13,7 @@ def validar_codigo():
             codigos.append(codigo)
     return codigo
 
-def buscarProduto(nome_produto):
+def buscarProduto(nome_produto, vendedores, usuario):
     achados = False
     for produto in vendedores[usuario][5]:
         if produto['nome'].find(nome_produto) != -1:

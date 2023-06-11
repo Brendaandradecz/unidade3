@@ -3,10 +3,9 @@ import funcao_vend
 import funcao_prodt
 import usarchatgpt
 
-vendedores = {'aa': ['aa', 'aa', '11111111111', 111, 'aa', [{'nome': 'bolsa', 'codigo': '1', 'preco': 12.0, 'quantidade': 12, 'descricao': 'adfffff'}, {'nome': 'carro', 'codigo': '2', 'preco': 222222.0, 'quantidade': 1, 'descricao': 'dfd'}]],
-              'ab': ['ab', 'ab', '11111111114', 114, 'ab', [{'nome': 'iphone', 'codigo': '4', 'preco': 15.0, 'quantidade': 1, 'descricao': 'adddddd'}, {'nome': 'ded', 'codigo': '5', 'preco': 22.0, 'quantidade': 13, 'descricao': 'fffd'}]]}
-codigos = ['1', '2', '4', '5']
-clientes = {'aa': {'senha': '123123', 'nome': 'sasa', 'cpf': '11122233344', 'tel': 12231123, 'email': 'brenda@gmail.com', 'compras': [{'nome': 'bolsa', 'codigo': '1', 'preco': 12.0, 'quantidade': 5, 'descricao': 'adfffff'}, {'nome': 'carro', 'codigo': '2', 'preco': 222222.0, 'quantidade': 1, 'descricao': 'dfd'}, {'nome': 'bolsa', 'codigo': '1', 'preco': 12.0, 'quantidade': 2, 'descricao': 'adfffff'}]}}
+vendedores = {}
+codigos = []
+clientes = {}
 
 menu = 9999
 while (menu != 0):
@@ -38,16 +37,15 @@ while (menu != 0):
                          if vendedores[usuario][0] == senha:
                              sistema = True
                              print(f'\nBem-vindo(a), {vendedores[usuario][1]}!')
-                             op2 = 99999
 
+                             op2 = 99999
                              while (op2 != 0):
                                  print('\n--------LOGADO----------\n\n1 - Cadastrar novo produto para venda\n''2 - Buscar produtos cadastrados\n''3 - Remover produtos cadastrados\n''4 - Atualizar produtos cadastrados\n5 - Atualizar senha\n6 - Gerar gráfico de produtos\n7 - Salvar relatório de produtos\n0- Sair\n')
                                  op2 = int(input('Digite o numero correspondente à opção desejada: '))
 
                                  if (op2 == 1):
                                      produtos = {}
-                                     codigo = funcao_prodt.validar_codigo()
-
+                                     codigo = funcao_prodt.validar_codigo(codigos)
                                      nome = input('Digite o nome do produto: ')
                                      preco = float(input('Digite o preço do produto: '))
                                      quantidade = int(input('Digite a quantidade em estoque: '))
@@ -59,12 +57,12 @@ while (menu != 0):
                                  elif (op2 == 2):
                                      print('\n--------BUSCAR PRODUTO CADASTRADO---------\n')
                                      nome_produto = input('Digite o nome do produto: ')
-                                     funcao_prodt.buscarProduto(nome_produto)
+                                     funcao_prodt.buscarProduto(nome_produto, vendedores, usuario)
 
                                  elif (op2 == 3):
                                      produtos_vendedor = vendedores[usuario][5]
                                      funcao_prodt.listarProduto(vendedores, usuario)
-                                     codigo_produto = input('digite o codigo do produto que deseja remover: ')
+                                     codigo_produto = input('\nDigite o codigo do produto que deseja remover: ')
                                      indice_produto = funcao_prodt.buscar_indice_produto(produtos_vendedor, codigo_produto)
 
                                      if indice_produto == -1:
@@ -77,8 +75,7 @@ while (menu != 0):
                                  elif (op2 == 4):
                                      produtos_vendedor = vendedores[usuario][5]
                                      funcao_prodt.listarProduto(vendedores, usuario)
-
-                                     codigo_produto = input('Digite o código do produto que deseja atualizar: ')
+                                     codigo_produto = input('\nDigite o código do produto que deseja atualizar: ')
                                      indice_produto = funcao_prodt.buscar_indice_produto(produtos_vendedor, codigo_produto)
 
                                      if indice_produto == -1:
@@ -103,9 +100,6 @@ while (menu != 0):
 
                                  elif (op2 != 0):
                                      print('Seleçao invalida')
-                                     print(vendedores)
-                                     print(clientes)
-                                     print(codigos)
                                  else:
                                      print('-------DESLOGADO--------')
                          else:
@@ -183,12 +177,10 @@ while (menu != 0):
 
                  elif(op3 != 0):
                      print('Seleção Invalida')
-                     print(clientes)
-                     print(vendedores)
                  else:
                      print('\nVocê saiu do MENU cliente')
 
     elif (menu != 0):
         print('Esta seleçao é invalida')
     else:
-        print('Programa Finalizado')
+        print('SERTÃO LIVRE ENCERRADO, VOLTE SEMPRE!')

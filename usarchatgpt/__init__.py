@@ -2,13 +2,9 @@ import openai
 
 def consultarchatgpt(produto):
    openai.api_key = 'depois coloco'
-   # Set the model and prompt
    model_engine = "text-davinci-003"
    prompt = 'me diga resumidamente o que você acha do ' + produto + ' ?'
-   # Set the maximum number of tokens to generate in the response
    max_tokens = 1024
-
-   # Generate a response
    completion = openai.Completion.create(
        engine=model_engine,
        prompt=prompt,
@@ -19,5 +15,4 @@ def consultarchatgpt(produto):
        presence_penalty=0
    )
 
-   # Print the response
    return completion.choices[0].text

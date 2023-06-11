@@ -61,7 +61,7 @@ def validar_email():
     email_valido = False
     while email_valido == False:
         email = input('Digite seu email: ')
-        if '@' and '.com' in email:
+        if '@' in email:
             email_valido = True
         if email_valido:
             print('Email valido')
